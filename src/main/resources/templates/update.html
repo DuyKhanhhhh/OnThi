@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="color: red" th:if="${message}">
+    <span th:text="${message}"></span>
+</div>
+<form th:action="@{/user/update}" th:object="${users}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <label>Name: </label>
+    <input type="text" th:field="*{name}">
+    <label>Email: </label>
+    <input type="text" th:field="*{email}">
+    <label>Role</label>
+    <select th:field="*{role}">
+        <option th:each="r : ${role}" th:value="${r.id}" th:text="${r.name}"></option>
+    </select>
+    <label>Password: </label>
+    <input type="text" th:field="*{password}">
+    <input type="submit" value="Update">
+</form>
+</body>
+</html>

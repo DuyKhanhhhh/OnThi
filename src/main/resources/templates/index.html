@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <span><a th:href="@{/user/save}">Create New User</a></span>
+</div>
+<div style="color: red" th:if="${message}">
+    <span th:text="${message}"></span>
+</div>
+<div>
+    <form th:action="@{/user/search}" method="get">
+        <input type="text" name="name">
+        <input type="submit" value="Search">
+    </form>
+</div>
+<table border="soild 1px">
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Email</td>
+        <!--            <td>Role</td>-->
+        <td>Password</td>
+        <td>Action</td>
+    </tr>
+    <tr th:each="user, uStatus: ${listUser}">
+        <td th:text="${uStatus.count}"></td>
+        <td th:text="${user.name}"></td>
+        <!--            <td th:text="${user.role.name}"></td>-->
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.password}"></td>
+        <td><a th:href="@{'/user/update/' + ${user.id}}">Edit</a></td>
+        <td><a th:href="@{'/user/delete/' + ${user.id}}" onclick="return confirm('May Co Muon Xoa kh')">Delete</a></td>
+    </tr>
+</table>
+<div id="page">
+    <a class="btn btn-primary" th:if="${listUser.hasPrevious()}"
+       th:href="@{/user(page=${listUser.number - 1})}">
+        <button class="btPage">Previous</button>
+    </a>
+    <span th:text="${listUser.number + 1}"></span> | <span
+        th:text="${listUser.totalPages}"></span>
+    <a class="btn btn-primary" th:if="${listUser.hasNext()}"
+       th:href="@{/user(page=${listUser.number + 1})}">
+        <button class="btPage">Next</button>
+    </a>
+</div>
+</body>
+</html>
