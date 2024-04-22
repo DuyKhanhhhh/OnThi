@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"><head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Create City</title>
+    </head>
+<body>
+<span>
+        <a th:href="@{/city}">Back To Home</a>
+    </span>
+<form th:action="@{/city/create}" th:object="${city}" method="post">
+    <input type="hidden" th:field="*{id}">
+    Name: <input type="text" th:field="*{name}">
+    <input type="submit" value="Save">
+</form>
+</body>
+</html>

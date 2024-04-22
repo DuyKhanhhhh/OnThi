@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HomeStay</title>
+</head>
+<body>
+<span>
+    <a th:href="@{/homeStay}">Back to HomeStay</a>
+</span>
+<form th:action="@{/homeStay/search}">
+    <input type="text" name="keyword">
+    <input type="submit" value="Save">
+</form>
+<div style="color: red" th:if="${message}">
+    <span th:text="${message}"></span>
+</div>
+<table border="1">
+    <tr>
+        <td>#</td>
+        <td>Name</td>
+        <td>City</td>
+        <td>Price</td>
+    </tr>
+    <tr th:each="h , hStatus : ${homeStay}">
+        <td th:text="${hStatus.count}"></td>
+        <td th:text="${h.name}"></td>
+        <td th:text="${h.city.name}"></td>
+        <td th:text="${h.price}"></td>
+        <td><a th:href="@{'/homeStay/update/' + ${h.id}}">Update</a></td>
+        <td><a th:href="@{'/homeStay/delete/' + ${h.id}}">Delete</a></td>
+    </tr>
+</table>
+</body>
+</html>

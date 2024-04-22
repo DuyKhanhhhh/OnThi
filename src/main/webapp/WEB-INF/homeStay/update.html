@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Update HomeStay</title>
+    </head>
+<body>
+    <span>
+        <a th:href="@{/homeStay}">Back To Home</a>
+    </span>
+<form th:action="@{/homeStay/update}" th:object="${homeStay}" method="post">
+    <input type="hidden" th:field="*{id}">
+    Name: <input type="text" th:field="*{name}"></br>
+    City:
+    <select th:field="*{city}">
+        <option th:each="c : ${city}" th:value="${c.id}" th:text="${c.name}"></option>
+    </select></br>
+    NumberOfRoom: <input type="number" th:field="*{numberOfRooms}"></br>
+    NumberOfBathroom: <input type="number" th:field="*{numberOfBathrooms}"></br>
+    Price: <input type="number" th:field="*{price}"></br>
+    Description: <input type="text" th:field="*{descriptions}"></br>
+    <input type="submit" value="Update">
+</form>
+</body>
+</html>

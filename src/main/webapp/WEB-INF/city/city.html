@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>City</title>
+</head>
+<body>
+<h1 style="text-align: center">City</h1>
+<span>
+    <a th:href="@{/city/create}">Create new City</a>
+</span>
+</br>
+<span>
+    <a th:href="@{/homeStay}">Show HomeStay</a>
+</span>
+<div style="color: red" th:if="${message}">
+    <span th:text="${message}"></span>
+</div>
+<table border="1">
+    <tr>
+        <td>#</td>
+        <td>Name</td>
+        <td>Status</td>
+    </tr>
+    <tr th:each="c , cStatus : ${city}">
+        <td th:text="${cStatus.count}"></td>
+        <td th:text="${c.name}"></td>
+        <td><a th:href="@{'/city/update/' + ${c.id}}">Update</a></td>
+        <td><a th:href="@{'/city/delete/' + ${c.id}}">Delete</a></td>
+    </tr>
+</table>
+</body>
+</html>
